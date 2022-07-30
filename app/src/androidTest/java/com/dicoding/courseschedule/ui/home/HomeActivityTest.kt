@@ -25,7 +25,7 @@ class HomeActivityTest{
     }
 
     @Test
-    fun testActivity(){
+    fun showAddActivity(){
         onView(withId(R.id.action_add)).perform(click())
 
         onView(withId(R.id.add_name_course)).check(matches(isDisplayed()))
@@ -33,10 +33,9 @@ class HomeActivityTest{
         onView(withId(R.id.imageButton)).check(matches(isDisplayed()))
         onView(withId(R.id.add_name_course)).check(matches(isDisplayed()))
         onView(withId(R.id.textView)).check(matches(isDisplayed()))
-        onView(withId(R.id.add_course_start)).check(matches(isDisplayed()))
-        onView(withId(R.id.imageButton2)).check(matches(isDisplayed()))
-        onView(withId(R.id.textView2)).check(matches(isDisplayed()))
-        onView(withId(R.id.add_course_end)).check(matches(isDisplayed()))
+
+
+
 
 
     }

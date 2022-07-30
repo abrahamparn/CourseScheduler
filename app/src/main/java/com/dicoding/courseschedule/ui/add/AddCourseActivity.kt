@@ -52,6 +52,7 @@ class AddCourseActivity : AppCompatActivity(),  TimePickerFragment.DialogTimeLis
                     binding.addCourseLecturer.text.toString().trim(),
                     binding.addCourseNote.text.toString().trim()
                 )
+                onBackPressed()
                 true
             }else -> super.onOptionsItemSelected(item)
         }

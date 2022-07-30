@@ -50,9 +50,7 @@ class HomeActivity : AppCompatActivity() {
             val dayName = DayName.getByNumber(day)
             val time = String.format(getString(R.string.time_format), dayName, startTime, endTime)
             val remainingTime = timeDifference(day, startTime)
-
             val cardHome = findViewById<CardHomeView>(R.id.view_home)
-
             cardHome.setCourseName(courseName)
             cardHome.setLecturer(lecturer)
             cardHome.setTime(time)

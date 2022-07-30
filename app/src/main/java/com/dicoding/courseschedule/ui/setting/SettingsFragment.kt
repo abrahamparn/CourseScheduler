@@ -15,6 +15,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
         //TODO 10 : Update theme based on value in ListPreference
+
         findPreference<ListPreference>(getString(R.string.pref_key_dark))?.setOnPreferenceChangeListener{
                 preference, newValue ->
             updateTheme(NightMode.valueOf(newValue.toString().toUpperCase(Locale.US)).value)

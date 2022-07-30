@@ -19,10 +19,12 @@ class DataRepository(private val dao: CourseDao) {
     fun getNearestSchedule(queryType: QueryType) : LiveData<Course?> {
         val query: SupportSQLiteQuery = nearestQuery(queryType)
         val queryTwo = dao.getNearestSchedule(query)
-        return queryTwo
+        return dao.getNearestSchedule(nearestQuery(queryType))
     }
 
     fun getAllCourse(sortType: SortType): LiveData<PagedList<Course>> {
+        //https://www.dicoding.com/academies/352/tutorials/22532
+
         val query = QueryUtil.sortedQuery(sortType)
         val source = dao.getAll(query)
         val config = PagedList.Config.Builder()

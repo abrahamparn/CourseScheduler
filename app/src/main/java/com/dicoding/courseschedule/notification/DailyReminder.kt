@@ -4,10 +4,12 @@ import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.dicoding.courseschedule.R
 import com.dicoding.courseschedule.data.Course
@@ -41,12 +43,22 @@ class DailyReminder : BroadcastReceiver() {
         calendar.set(Calendar.MINUTE, 0)
         calendar.set(Calendar.SECOND, 0)
 
-        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, FLAG_IMMUTABLE)
 
         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent)
     }
 
     fun cancelAlarm(context: Context) {
+        //https://www.dicoding.com/academies/14/tutorials/193
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(context, DailyReminder::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(context, ID_REPEATING, intent, FLAG_IMMUTABLE)
+        pendingIntent.cancel()
+        alarmManager.cancel(pendingIntent)
+        Toast.makeText(context, "Repeating alarm dibatalkan", Toast.LENGTH_SHORT).show()
+
+
+
 
     }
 
